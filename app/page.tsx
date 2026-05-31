@@ -53,7 +53,7 @@ export default function Portfolio() {
       response = loremIpsum;
     } else {
       response =
-        "Silakan masukkan perintah sesuai format sistem. Jika masih bingung, ketik “Help” untuk melihat panduan";
+        "Please enter a command according to the system format. If you're not sure what to do, type \"Help\" to see the available commands.";
     }
 
     setHistory([...history, { command: cmdText, output: response }]);
@@ -92,10 +92,10 @@ export default function Portfolio() {
   return (
     <main className="min-h-screen bg-white flex items-center justify-center p-6 md:p-5">
       {/* MAIN CONTAINER */}
-      <div className="bg-[#F1F1F1] w-full max-w-8xl min-h-[650px] md:h-[94vh] rounded-[20px] shadow-md relative flex flex-col md:flex-row overflow-hidden">
+      <div className="bg-[#e4e4e4] w-full max-w-8xl min-h-[650px] md:h-[94vh] rounded-[20px] shadow-md relative flex flex-col md:flex-row overflow-hidden">
         {/* Traffic Light Buttons (Desktop) */}
         <div className="absolute top-6 left-6 z-20">
-          <Image src="/traffic-light-buttons.svg" alt="controls" width={50} height={15} />
+          <Image src="/traffic-light-buttons.svg" alt="controls" width={60} height={25} />
         </div>
 
         {/* --- SISI KIRI (Left Container) --- */}
@@ -163,12 +163,12 @@ export default function Portfolio() {
             </div>
 
             {/* Terminal Content Area */}
-            <div className="flex-1 overflow-y-auto p-5 terminal-scrollbar text-sm ">
+            <div className="flex-1 overflow-y-auto p-5 terminal-scrollbar text-xs md:text-sm font-ibm-plex">
               {/* History */}
               {history.map((item, index) => (
                 <div key={index} className="mb-4">
                   <div className="break-all leading-relaxed">
-                    <span className="text-[#ffffff] mr-2 ">(base) user@aboutfarid %</span>
+                    <span className="text-[#ffffff] mr-2  ">(base) user@aboutfarid %</span>
                     <span>{item.command}</span>
                   </div>
                   <div className="mt-1 text-gray-300 leading-relaxed text-justify">
@@ -228,7 +228,7 @@ export default function Portfolio() {
                   {isOnline ? (
                     <Image src="/checklist.svg" alt="online" width={10} height={10} />
                   ) : (
-                    <span className="text-[16px] leading-none">✕</span>
+                    <span className="text-[10px] leading-none">✕</span>
                   )}
                 </div>
                 <span className="text-[10px] md:text-sm font-light text-white/90">
