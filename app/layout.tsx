@@ -4,7 +4,7 @@ import "./globals.css";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300","400", "500"],
   variable: "--font-poppins",
 });
 
@@ -19,11 +19,7 @@ export const metadata: Metadata = {
   description: "Personal Portfolio of Farid",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${ibmPlexMono.variable} font-sans bg-white`}>

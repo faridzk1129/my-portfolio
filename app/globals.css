@@ -16,7 +16,7 @@ body {
   width: 6px;
 }
 .terminal-scrollbar::-webkit-scrollbar-track {
-  background: #777777;
+  background: #ffffff;
 }
 .terminal-scrollbar::-webkit-scrollbar-thumb {
   background: #9d9d9d;
