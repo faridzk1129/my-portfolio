@@ -104,16 +104,16 @@ export default function Portfolio() {
             <h2 className="text-2xl md:mb-4 md:text-4xl font-light tracking-wider  text-[#333333] mb-1">
               Lets explore
             </h2>
-            <h1 className="text-4xl md:text-5xl font-normal tracking-wider  text-[#333333] mb-8">
+            <h2 className="text-4xl md:text-5xl font-light tracking-wider  text-[#333333] mb-8">
               Farid Portfolio
-            </h1>
+            </h2>
 
             {/* Arrow Right (Desktop Only) */}
             <div className="hidden md:block my-6">
               <Image src="/arrow-right.svg" alt="arrow" width={450} height={40} />
             </div>
 
-            <p className="text-lg md:text-xl text-[#333333] mb-8 font-light tracking-wider ">
+            <p className=" hidden md:block  text-lg md:text-xl text-[#333333] mb-8 font-light tracking-wider ">
               Use this terminal
             </p>
           </div>
@@ -128,9 +128,12 @@ export default function Portfolio() {
               className="w-64 md:w-[400px] object-contain"
             />
           </div>
+          <p className="text-lg md:text-xl text-[#333333] mt-8 font-light tracking-wider md:hidden ">
+            Use this terminal
+          </p>
 
           {/* Arrow Bottom (Mobile Only) */}
-          <button className="md:hidden bg-[#1D1D1D] p-4 rounded-full mt-8 shadow-lg active:scale-95 transition">
+          <button className="md:hidden bg-[#1D1D1D] p-4 rounded-full mt-8 shadow-lg active:scale-85 scale-90 transition">
             <Image src="/arrow-bottom.svg" alt="down" width={20} height={20} />
           </button>
         </div>
@@ -138,7 +141,7 @@ export default function Portfolio() {
         {/* --- SISI KANAN (Right Container / Terminal) --- */}
         <div className="w-full md:w-1/2 p-2 md:p-4  flex flex-col h-[600px] md:h-full ">
           <div
-            className="bg-[#1D1D1D] w-full h-full rounded-[25px] shadow-2xl flex flex-col overflow-hidden text-white font-mono cursor-text"
+            className="bg-[#1D1D1D] w-full h-full rounded-[25px] shadow-xl flex flex-col overflow-hidden text-white font-mono cursor-text"
             onClick={focusInput}
           >
             {/* Terminal Header / Navigation */}
@@ -205,42 +208,43 @@ export default function Portfolio() {
               <div ref={terminalEndRef} />
             </div>
 
-            <div className="p-4 md:p-6 bg-[#1D1D1D] flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className=" w-full p-4 md:p-5 bg-[#1D1D1D] flex flex-row items-center justify-between gap-3 text-sm font-['Poppins']">
+              {/* Badge Status */}
               <div
                 className={`
-                flex items-center gap-3 px-4 py-2 rounded-full transition-all duration-500
-                ${
-                  isOnline
-                    ? "bg-gradient-to-r from-[#262F23] to-[#2E4A24]"
-                    : "bg-gradient-to-r from-[#4A2424] to-[#2F2323]"
-                }
-              `}
+      flex items-center justify-center gap-3 px-6 py-2 md:py-2.5 rounded-full transition-all duration-500 
+      ${
+        isOnline
+          ? "bg-gradient-to-r from-[#262F23] to-[#2E4A24]"
+          : "bg-gradient-to-r from-[#4A2424] to-[#2F2323]"
+      }
+    `}
               >
                 <div
-                  className={`
-    w-5 h-5 rounded-full flex items-center justify-center
-    ${isOnline ? "bg-[#E3F3AD]" : "bg-[#F3ADAD] text-[#4A2424]"}
-  `}
+                  className={`w-5 h-5 rounded-full flex items-center justify-evenly ${
+                    isOnline ? "bg-[#E3F3AD]" : "bg-[#F3ADAD] text-[#4A2424]"
+                  }`}
                 >
                   {isOnline ? (
-                    <Image src="/checklist.svg" alt="online" width={8} height={8} />
+                    <Image src="/checklist.svg" alt="online" width={10} height={10} />
                   ) : (
                     <span className="text-[16px] leading-none">✕</span>
                   )}
                 </div>
-                <span className="text-xs font-medium text-white/90">
-                  {isOnline ? "You’re Online" : "You’re Offline"}
+                <span className="text-[10px] md:text-sm font-light text-white/90">
+                  {isOnline ? "Online" : "Offline"}
                 </span>
               </div>
 
+              {/* Tombol Github */}
               <a
                 href="https://github.com/faridzk1129"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 bg-white text-[#1D1D1D] px-5 py-2 rounded-xl font-bold text-sm hover:bg-gray-200 transition active:scale-95 cursor-pointer z-10"
+                className="flex items-center justify-between gap-3 bg-white text-[#1D1D1D] px-6 py-2 md:py-2.5 rounded-full font-light text-[10px] md:text-sm  hover:bg-gray-200 transition active:scale-95 cursor-pointer z-10 w-[100%] "
                 onClick={(e) => e.stopPropagation()}
               >
-                Follow Me on Github
+                Let's connect ....
                 <Image src="/github.svg" alt="github" width={20} height={20} />
               </a>
             </div>
