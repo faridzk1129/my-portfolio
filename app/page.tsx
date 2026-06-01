@@ -3,10 +3,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
-// Definisi Tipe untuk Histori Terminal
 type TerminalHistory = {
   command: string;
-  output: string;
+  output: React.ReactNode;
 };
 
 export default function Portfolio() {
@@ -14,11 +13,60 @@ export default function Portfolio() {
   const [history, setHistory] = useState<TerminalHistory[]>([]);
   const [isOnline, setIsOnline] = useState(true);
 
+  const [theme, setTheme] = useState<"a" | "b" | "c" | "d">("a");
+
+  const colorMap = {
+    a: {
+      prompt: "text-white",
+      output: "text-gray-300",
+      input: "text-white",
+      header: "text-white/80",
+      headerBorder: "border-white/15",
+      headerHover: "hover:text-white",
+    },
+    b: {
+      prompt: "text-green-300",
+      output: "text-green-500",
+      input: "text-green-300",
+      header: "text-green-400/80",
+      headerBorder: "border-green-500/20",
+      headerHover: "hover:text-green-300",
+    },
+    c: {
+      prompt: "text-indigo-300",
+      output: "text-indigo-500",
+      input: "text-indigo-300",
+      header: "text-indigo-400/80",
+      headerBorder: "border-indigo-500/20",
+      headerHover: "hover:text-indigo-300",
+    },
+    d: {
+      prompt: "text-blue-300",
+      output: "text-blue-500",
+      input: "text-blue-300",
+      header: "text-blue-400/80",
+      headerBorder: "border-blue-500/20",
+      headerHover: "hover:text-blue-300",
+    },
+  };
+
   const terminalEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLSpanElement>(null);
 
-  // Perintah yang diizinkan
-  const validCommands = ["projects", "education", "skill", "contact", "about", "help"];
+  const validCommands = [
+    "projects",
+    "education",
+    "skill",
+    "contact",
+    "about",
+    "help",
+    "clear",
+    "color a",
+    "color b",
+    "color c",
+    "color d",
+  ];
+
   const loremIpsum =
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library, took a 1914 Cicero translation.";
 
@@ -43,17 +91,162 @@ export default function Portfolio() {
     };
   }, []);
 
-  // Logic: Handle Eksekusi Perintah
+
   const executeCommand = (cmdText: string) => {
     const cmd = cmdText.toLowerCase().trim();
     if (cmd === "") return;
 
-    let response = "";
-    if (validCommands.includes(cmd)) {
+    if (cmd === "clear") {
+      setHistory([]);
+      return;
+    }
+
+    let response: React.ReactNode = "";
+
+    if (cmd === "help") {
+      response = (
+        <span className="whitespace-pre-wrap">
+          {`Use <command>
+
+Usage:
+  "help"       Show this help menu.
+  "projects"   List projects by Farid.
+  "education"  View educational history.
+  "skill"      Show technical skills.
+  "contact"    Show contact links.
+  "about"      Show profile overview.
+  "clear"      Clear terminal history.
+  "color a"    Reset terminal color.
+  "color b"    Change color to green.
+  "color c"    Change color to indigo.
+  "color d"    Change color to blue.`}
+        </span>
+      );
+    } else if (cmd === "about") {
+      response = (
+        <p className="text-justify leading-relaxed">
+          Currently, I am a graduate from Makassar State University majoring in Computer
+          Engineering. I am highly interested in web development, frequently utilizing technologies
+          like Next.js and Tailwind CSS. Additionally, I have a strong interest in mobile app
+          development, especially iOS, using React Native and Swift. I am also passionate about
+          cloud computing using Google Cloud Platform. I am skilled at analyzing and solving
+          problems related to application design and development. Apart from that, I am very
+          interested in UI/UX design, creating user-friendly interfaces. I enjoy teamwork, sharing
+          ideas, and learning collaboratively with others.
+        </p>
+      );
+    } else if (cmd === "contact") {
+      response = (
+        <div className="flex flex-col gap-2 mt-1 my-1 ">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold min-w-[85px]">Linkedin</span>:
+            <a
+              href="https://www.linkedin.com/in/mmfarid1129"
+              target="_blank"
+              rel="noopener noreferrer"
+              className=" hover:underline break-all"
+            >
+              mmfarid1129
+            </a>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold min-w-[85px]">Email</span>:
+            <a href="mailto:mmfarid1129@gmail.com" className=" hover:underline break-all">
+              mmfarid1129@gmail.com
+            </a>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold min-w-[85px]">Instagram</span>:
+            <a
+              href="https://www.instagram.com/mfrd11z/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline break-all"
+            >
+              mfrd11z
+            </a>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-semibold min-w-[85px]">Whatsapp</span>:
+            <span className=" break-all">+6287860221798</span>
+          </div>
+        </div>
+      );
+    } else if (cmd === "education") {
+      response = (
+        <div className="flex flex-col gap-3 mt-2 border-l border-current/20 pl-4 ml-2 transition-colors duration-300">
+          {[
+            { name: "SDN 161 Pinrang", status: "Completed" },
+            { name: "SMPN 1 Pinrang", status: "Completed" },
+            { name: "Boarding School SMAN 11 Pinrang", status: "Completed" },
+            { name: "State University of Makassar", status: "Computer Engineering Graduate" },
+          ].map((edu, idx) => (
+            <div key={idx} className="relative group">
+              <div className="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-current/40 group-hover:bg-current transition-colors duration-300" />
+              <div className="font-semibold text-current transition-colors duration-300">
+                {edu.name}
+              </div>
+              <div className="text-xs opacity-60 transition-opacity duration-300">{edu.status}</div>
+            </div>
+          ))}
+        </div>
+      );
+    } else if (cmd === "skill") {
+      const skillsData = [
+        { cat: "Web", items: ["Next.js", "Tailwindcss", "Laravel", "FastAPI", "SQL"] },
+        { cat: "Mobile", items: ["iOS", "React Native", "Swift"] },
+        { cat: "Cloud Computing", items: ["Google Cloud Platform", "VPS"] },
+        {
+          cat: "Artificial Intelligence",
+          items: ["Preprocessing Data", "Natural Language Processing (NLP)", "Computer Vision"],
+        },
+        { cat: "UI/UX", items: ["Figma", "Wireframing", "Prototyping", "Design System"] },
+        {
+          cat: "Soft Skills",
+          items: ["Problem Solving", "Teamwork & Collaboration", "Time Management", "Adaptability"],
+        },
+      ];
+      response = (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+          {skillsData.map((skill, idx) => (
+            <div
+              key={idx}
+              className="bg-current/5 p-3 rounded-xl border border-current/10 hover:border-current/20 transition-all duration-300"
+            >
+              <div className="text-current font-bold flex items-center gap-1.5 mb-1 text-xs md:text-sm tracking-wide uppercase border-b border-current/10 pb-1 transition-colors duration-300">
+                <span>⚡</span> {skill.cat}
+              </div>
+              <div className="flex flex-wrap gap-1.5 mt-2">
+                {skill.items.map((item, i) => (
+                  <span
+                    key={i}
+                    className="text-[11px] md:text-xs bg-current/10 text-current/90 px-2 py-0.5 rounded-md font-mono transition-colors duration-300"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    } else if (cmd === "color a") {
+      setTheme("a");
+      response = "";
+    } else if (cmd === "color b") {
+      setTheme("b");
+      response = "";
+    } else if (cmd === "color c") {
+      setTheme("c");
+      response = "";
+    } else if (cmd === "color d") {
+      setTheme("d");
+      response = "";
+    } else if (validCommands.includes(cmd)) {
       response = loremIpsum;
     } else {
       response =
-        "Please enter a command according to the system format. If you're not sure what to do, type \"Help\" to see the available commands.";
+        'Please enter a command according to the system format. If you\'re not sure what to do, type "Help" to see the available commands.';
     }
 
     setHistory([...history, { command: cmdText, output: response }]);
@@ -74,21 +267,14 @@ export default function Portfolio() {
     }
   };
 
-  // --- YANG DITAMBAHKAN: Fungsi untuk handle klik pada navigasi atas ---
   const handleNavClick = (cmd: string) => {
-    // 1. Update state React
     setInput(cmd);
-
-    // 2. Update teks secara fisik pada elemen contentEditable
     if (inputRef.current) {
       inputRef.current.textContent = cmd;
     }
-
-    // 3. Fokuskan kursor kembali ke area input di ujung kanan teks
     focusInput();
   };
-  // ---------------------------------------------------------------------
-
+  
   return (
     <main className="min-h-screen bg-white flex items-center justify-center p-6 md:p-5">
       {/* MAIN CONTAINER */}
@@ -144,22 +330,25 @@ export default function Portfolio() {
             className="bg-[#1D1D1D] w-full h-full rounded-[25px] shadow-xl flex flex-col overflow-hidden text-white font-mono cursor-text"
             onClick={focusInput}
           >
-            {/* Terminal Header / Navigation */}
-            <div className="px-4 py-4 border-b border-white/80 flex flex-wrap text-[11px] lg:text-sm text-white justify-evenly">
-              {validCommands.map((item, idx) => (
-                <React.Fragment key={item}>
-                  <span
-                    className="hover:text-white cursor-pointer transition"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleNavClick(item);
-                    }}
-                  >
-                    {item}
-                  </span>
-                  {idx !== validCommands.length - 1 && <span>|</span>}
-                </React.Fragment>
-              ))}
+            <div
+              className={`px-4 py-4 border-b ${colorMap[theme].headerBorder} flex flex-wrap text-[11px] lg:text-sm ${colorMap[theme].header} justify-evenly transition-colors duration-300`}
+            >
+              {validCommands
+                .filter((item) => !item.startsWith("color") && item !== "clear")
+                .map((item, idx, filteredArray) => (
+                  <React.Fragment key={item}>
+                    <span
+                      className={`cursor-pointer transition-colors duration-300 ${colorMap[theme].headerHover}`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleNavClick(item);
+                      }}
+                    >
+                      {item}
+                    </span>
+                    {idx !== filteredArray.length - 1 && <span className="opacity-50">|</span>}
+                  </React.Fragment>
+                ))}
             </div>
 
             {/* Terminal Content Area */}
@@ -168,23 +357,34 @@ export default function Portfolio() {
               {history.map((item, index) => (
                 <div key={index} className="mb-4">
                   <div className="break-all leading-relaxed">
-                    <span className="text-[#ffffff] mr-2  ">(base) user@aboutfarid %</span>
-                    <span>{item.command}</span>
+                    <span
+                      className={`${colorMap[theme].prompt} mr-2 transition-colors duration-300`}
+                    >
+                      (base) user@aboutfarid %
+                    </span>
+                    <span className={`${colorMap[theme].input} transition-colors duration-300`}>
+                      {item.command}
+                    </span>
                   </div>
-                  <div className="mt-1 text-gray-300 leading-relaxed text-justify">
+                  <div
+                    className={`mt-1 ${colorMap[theme].output} leading-relaxed transition-colors duration-300`}
+                  >
                     {item.output}
                   </div>
                 </div>
               ))}
-
               {/* Current Prompt (Input) */}
               <div className="break-all leading-relaxed w-full block">
-                <span className="text-[#ffffff] mr-2 select-none">(base) user@aboutfarid %</span>
+                <span
+                  className={`${colorMap[theme].prompt} mr-2 select-none transition-colors duration-300`}
+                >
+                  (base) user@aboutfarid %
+                </span>
                 <span
                   ref={inputRef}
-                  contentEditable // Mengubah span menjadi area ketik
+                  contentEditable
                   suppressContentEditableWarning
-                  className={`outline-none text-white whitespace-pre-wrap break-all inline ${
+                  className={`outline-none whitespace-pre-wrap break-all inline transition-colors duration-300 ${colorMap[theme].input} ${
                     input === "" ? "relative -top-[3px]" : ""
                   }`}
                   onInput={(e) => setInput(e.currentTarget.textContent || "")}

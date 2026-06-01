@@ -16,9 +16,9 @@ body {
   width: 6px;
 }
 .terminal-scrollbar::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #9d9d9d;
 }
 .terminal-scrollbar::-webkit-scrollbar-thumb {
-  background: #9d9d9d;
+  background: #2c2c2c;
   border-radius: 10px;
 }
