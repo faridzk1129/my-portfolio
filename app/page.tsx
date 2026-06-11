@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
+import ModalProjects from "@/components/ModalProjects";
+
 type TerminalHistory = {
   command: string;
   output: React.ReactNode;
@@ -15,35 +17,38 @@ export default function Portfolio() {
 
   const [theme, setTheme] = useState<"a" | "b" | "c" | "d">("a");
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("");
+
   const colorMap = {
     a: {
-      prompt: "text-white",
-      output: "text-gray-300",
-      input: "text-white",
+      prompt: "text-gray-200",
+      output: "text-white",
+      input: "text-gray-200",
       header: "text-white/80",
       headerBorder: "border-white/15",
       headerHover: "hover:text-white",
     },
     b: {
-      prompt: "text-green-300",
-      output: "text-green-500",
-      input: "text-green-300",
+      prompt: "text-green-500",
+      output: "text-green-400",
+      input: "text-green-500",
       header: "text-green-400/80",
       headerBorder: "border-green-500/20",
       headerHover: "hover:text-green-300",
     },
     c: {
-      prompt: "text-indigo-300",
-      output: "text-indigo-500",
-      input: "text-indigo-300",
+      prompt: "text-indigo-500",
+      output: "text-indigo-400",
+      input: "text-indigo-500",
       header: "text-indigo-400/80",
       headerBorder: "border-indigo-500/20",
       headerHover: "hover:text-indigo-300",
     },
     d: {
-      prompt: "text-blue-300",
-      output: "text-blue-500",
-      input: "text-blue-300",
+      prompt: "text-blue-500",
+      output: "text-blue-400",
+      input: "text-blue-500",
       header: "text-blue-400/80",
       headerBorder: "border-blue-500/20",
       headerHover: "hover:text-blue-300",
@@ -75,7 +80,9 @@ export default function Portfolio() {
   };
 
   useEffect(() => {
-    scrollToBottom();
+    if (history.length > 0) {
+      scrollToBottom();
+    }
   }, [history]);
 
   useEffect(() => {
@@ -90,7 +97,6 @@ export default function Portfolio() {
       window.removeEventListener("offline", handleOffline);
     };
   }, []);
-
 
   const executeCommand = (cmdText: string) => {
     const cmd = cmdText.toLowerCase().trim();
@@ -135,9 +141,43 @@ Usage:
           ideas, and learning collaboratively with others.
         </p>
       );
+      // 3. PERUBAHAN: Modifikasi kondisi perintah "projects" untuk menampilkan kategori mirip dengan grid "skill"
+    } else if (cmd === "projects") {
+      const projectCategories = [
+        { cat: "UI Design", icon: "🎨" },
+        { cat: "Mobile App", icon: "📱" },
+        { cat: "Web App", icon: "🌐" },
+        { cat: "Desktop App", icon: "💻" },
+        { cat: "Extension App", icon: "🧩" },
+      ];
+
+      response = (
+        <div className="mt-2 flex flex-col gap-2">
+          <p className="text-current font-semibold opacity-90 animate-pulse">
+            👉 Please click on the project category you want to see:
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-1">
+            {projectCategories.map((project, idx) => (
+              <div
+                key={idx}
+                onClick={(e) => {
+                  e.stopPropagation(); // Mencegah bentrok dengan klik area terminal parent
+                  setSelectedCategory(project.cat);
+                  setIsModalOpen(true);
+                }}
+                className="bg-current/5 p-3 rounded-xl border border-current/10 hover:border-current/30 hover:bg-current/10 cursor-pointer transition-all duration-300 transform hover:-translate-y-0.5"
+              >
+                <div className="text-current font-bold flex items-center gap-1.5 mb-1 text-xs md:text-sm tracking-wide uppercase border-b border-current/10 pb-3">
+                  <span>{project.icon}</span> {project.cat}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
     } else if (cmd === "contact") {
       response = (
-        <div className="flex flex-col gap-2 mt-1 my-1 ">
+        <div className="flex flex-col gap-2 mt-1 my-1">
           <div className="flex items-center gap-2">
             <span className="font-semibold min-w-[85px]">Linkedin</span>:
             <a
@@ -263,6 +303,15 @@ Usage:
         range.collapse(false);
         selection?.removeAllRanges();
         selection?.addRange(range);
+
+        if (window.innerWidth < 768) {
+          setTimeout(() => {
+            inputRef.current?.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          }, 350);
+        }
       }
     }
   };
@@ -274,15 +323,26 @@ Usage:
     }
     focusInput();
   };
-  
   return (
     <main className="min-h-screen bg-white flex items-center justify-center p-6 md:p-5">
-      {/* MAIN CONTAINER */}
       <div className="bg-[#e4e4e4] w-full max-w-8xl min-h-[650px] md:h-[94vh] rounded-[20px] shadow-md relative flex flex-col md:flex-row overflow-hidden">
         {/* Traffic Light Buttons (Desktop) */}
         <div className="absolute top-6 left-6 z-20">
-          <Image src="/traffic-light-buttons.svg" alt="controls" width={60} height={25} />
+          <Image
+            src="/traffic-light-buttons.svg"
+            alt="controls"
+            width={60}
+            height={25}
+            className="w-16 h-auto"
+          />
         </div>
+        {/* 4. TAMBAHKAN: Letakkan komponen modal tepat sebelum penutupan akhir tag main */}
+        <ModalProjects
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          initialCategory={selectedCategory}
+          theme={theme}
+        />
 
         {/* --- SISI KIRI (Left Container) --- */}
         <div className="w-full md:w-1/2 p-8 md:p-14 flex flex-col justify-center items-center md:items-start text-center md:text-left relative ">
@@ -291,12 +351,18 @@ Usage:
               Lets explore
             </h2>
             <h2 className="text-4xl md:text-5xl font-light tracking-wider  text-[#333333] mb-8">
-              Farid Portfolio
+              My Portfolio
             </h2>
 
             {/* Arrow Right (Desktop Only) */}
             <div className="hidden md:block my-6">
-              <Image src="/arrow-right.svg" alt="arrow" width={450} height={40} />
+              <Image
+                src="/arrow-right.svg"
+                alt="arrow"
+                width={450}
+                height={40}
+                className="w-auto h-auto"
+              />
             </div>
 
             <p className=" hidden md:block  text-lg md:text-xl text-[#333333] mb-8 font-light tracking-wider ">
@@ -304,23 +370,28 @@ Usage:
             </p>
           </div>
 
-          {/* Photo Me (Vector SVG) */}
-          <div className="md:absolute md:bottom-0 md:left-1/2 md:-translate-x-1/2 w-full flex justify-center ">
+          <div className="md:absolute md:bottom-0 md:inset-x-0 md:mx-auto w-full flex justify-center overflow-hidden">
             <Image
-              src="/photo-me-1.svg"
+              src="/photo-me-1.png"
               alt="Farid"
               width={400}
               height={400}
-              className="w-64 md:w-[400px] object-contain"
+              priority
+              className="[image-rendering:pixelated] [clip-path:inset(2px_0px_0px_0px)] w-auto h-auto "
             />
           </div>
           <p className="text-lg md:text-xl text-[#333333] mt-8 font-light tracking-wider md:hidden ">
             Use this terminal
           </p>
 
-          {/* Arrow Bottom (Mobile Only) */}
           <button className="md:hidden bg-[#1D1D1D] p-4 rounded-full mt-8 shadow-lg active:scale-85 scale-90 transition">
-            <Image src="/arrow-bottom.svg" alt="down" width={20} height={20} />
+            <Image
+              src="/arrow-bottom.svg"
+              alt="down"
+              width={20}
+              height={20}
+              className="w-auto h-auto"
+            />
           </button>
         </div>
 
@@ -408,7 +479,7 @@ Usage:
               <div ref={terminalEndRef} />
             </div>
 
-            <div className=" w-full p-4 md:p-5 bg-[#1D1D1D] flex flex-row items-center justify-between gap-3 text-sm font-['Poppins']">
+            <div className="w-full p-4 md:p-5 bg-[#1D1D1D] flex flex-row items-center justify-between gap-3 text-sm font-['Poppins']">
               {/* Badge Status */}
               <div
                 className={`
@@ -426,7 +497,13 @@ Usage:
                   }`}
                 >
                   {isOnline ? (
-                    <Image src="/checklist.svg" alt="online" width={10} height={10} />
+                    <Image
+                      src="/checklist.svg"
+                      alt="online"
+                      width={10}
+                      height={10}
+                      className="w-2 h-auto"
+                    />
                   ) : (
                     <span className="text-[10px] leading-none">✕</span>
                   )}
