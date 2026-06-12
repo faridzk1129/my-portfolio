@@ -94,7 +94,7 @@ const PROJECTS_DATA: ProjectDataStructure = {
       title: "Shuttlecock Classifier",
       images: Array.from({ length: 2 }, (_, i) => `/mobile-app/project 2-${i + 1}.png`),
       description:
-        '"Scancock" is an Android-based mobile application that integrates Machine Learning for real-time physical quality classification of shuttlecocks. This research involved experimenting with three CNN architectures—TinyVGG, MobileNetV2, and ResNet50—trained on a dataset of 1,000 images. MobileNetV2 was selected as the optimal model due to its superior accuracy and computational efficiency, then converted into TFLite format and implemented using Kotlin to provide instant "Good" or "Bad" shuttlecock detection results via the device\'s camera.',
+        '"Scancock" is an Android-based mobile application that integrates Machine Learning for real-time physical quality classification of shuttlecocks. This research involved experimenting with three CNN architectures—TinyVGG, MobileNetV2, and ResNet50—trained on a dataset of 1.000 images. MobileNetV2 was selected as the optimal model due to its superior accuracy and computational efficiency, then converted into TFLite format and implemented using Kotlin to provide instant "Good" or "Bad" shuttlecock detection results via the device\'s camera.',
       techStack: ["Android", "Kotlin", "MobileNetV2", "TFLite"],
     },
     {
@@ -221,7 +221,7 @@ const modalThemeMap = {
     btn: "bg-white text-black hover:bg-gray-200",
     dotActive: "bg-white w-6",
     scrollbar:
-      "[&::-webkit-scrollbar-thumb]:bg-white/10 hover:[&::-webkit-scrollbar-thumb]:bg-white/25",
+      "[&::-webkit-scrollbar-thumb]:bg-white/40 hover:[&::-webkit-scrollbar-thumb]:bg-white/60", // Diubah dari 10/25 ke 40/60
   },
   b: {
     border: "border-green-500/30",
@@ -231,7 +231,7 @@ const modalThemeMap = {
     btn: "bg-green-500 text-black hover:bg-green-400",
     dotActive: "bg-green-500 w-6",
     scrollbar:
-      "[&::-webkit-scrollbar-thumb]:bg-green-500/20 hover:[&::-webkit-scrollbar-thumb]:bg-green-500/40",
+      "[&::-webkit-scrollbar-thumb]:bg-green-500/40 hover:[&::-webkit-scrollbar-thumb]:bg-green-500/60", // Diubah dari 20/40 ke 40/60
   },
   c: {
     border: "border-indigo-500/30",
@@ -241,7 +241,7 @@ const modalThemeMap = {
     btn: "bg-indigo-500 text-white hover:bg-indigo-400",
     dotActive: "bg-indigo-500 w-6",
     scrollbar:
-      "[&::-webkit-scrollbar-thumb]:bg-indigo-500/20 hover:[&::-webkit-scrollbar-thumb]:bg-indigo-500/40",
+      "[&::-webkit-scrollbar-thumb]:bg-indigo-500/40 hover:[&::-webkit-scrollbar-thumb]:bg-indigo-500/60", // Diubah dari 20/40 ke 40/60
   },
   d: {
     border: "border-blue-500/30",
@@ -251,10 +251,9 @@ const modalThemeMap = {
     btn: "bg-blue-500 text-white hover:bg-blue-400",
     dotActive: "bg-blue-500 w-6",
     scrollbar:
-      "[&::-webkit-scrollbar-thumb]:bg-blue-500/20 hover:[&::-webkit-scrollbar-thumb]:bg-blue-500/40",
+      "[&::-webkit-scrollbar-thumb]:bg-blue-500/40 hover:[&::-webkit-scrollbar-thumb]:bg-blue-500/60", // Diubah dari 20/40 ke 40/60
   },
 };
-
 export default function ModalProjects({
   isOpen,
   onClose,
