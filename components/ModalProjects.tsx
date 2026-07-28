@@ -228,7 +228,7 @@ const modalThemeMap = {
     btn: "bg-white text-black hover:bg-gray-200",
     dotActive: "bg-white w-6",
     scrollbar:
-      "[&::-webkit-scrollbar-thumb]:bg-white/40 hover:[&::-webkit-scrollbar-thumb]:bg-white/60", // Diubah dari 10/25 ke 40/60
+      "[&::-webkit-scrollbar-thumb]:bg-white/40 hover:[&::-webkit-scrollbar-thumb]:bg-white/60",
   },
   b: {
     border: "border-green-500/30",
@@ -238,7 +238,7 @@ const modalThemeMap = {
     btn: "bg-green-500 text-black hover:bg-green-400",
     dotActive: "bg-green-500 w-6",
     scrollbar:
-      "[&::-webkit-scrollbar-thumb]:bg-green-500/40 hover:[&::-webkit-scrollbar-thumb]:bg-green-500/60", // Diubah dari 20/40 ke 40/60
+      "[&::-webkit-scrollbar-thumb]:bg-green-500/40 hover:[&::-webkit-scrollbar-thumb]:bg-green-500/60",
   },
   c: {
     border: "border-indigo-500/30",
@@ -248,7 +248,7 @@ const modalThemeMap = {
     btn: "bg-indigo-500 text-white hover:bg-indigo-400",
     dotActive: "bg-indigo-500 w-6",
     scrollbar:
-      "[&::-webkit-scrollbar-thumb]:bg-indigo-500/40 hover:[&::-webkit-scrollbar-thumb]:bg-indigo-500/60", // Diubah dari 20/40 ke 40/60
+      "[&::-webkit-scrollbar-thumb]:bg-indigo-500/40 hover:[&::-webkit-scrollbar-thumb]:bg-indigo-500/60",
   },
   d: {
     border: "border-blue-500/30",
@@ -258,9 +258,10 @@ const modalThemeMap = {
     btn: "bg-blue-500 text-white hover:bg-blue-400",
     dotActive: "bg-blue-500 w-6",
     scrollbar:
-      "[&::-webkit-scrollbar-thumb]:bg-blue-500/40 hover:[&::-webkit-scrollbar-thumb]:bg-blue-500/60", // Diubah dari 20/40 ke 40/60
+      "[&::-webkit-scrollbar-thumb]:bg-blue-500/40 hover:[&::-webkit-scrollbar-thumb]:bg-blue-500/60",
   },
 };
+
 export default function ModalProjects({
   isOpen,
   onClose,
@@ -274,6 +275,20 @@ export default function ModalProjects({
     setProjectIndex(0);
     setImageIndex(0);
   }, [initialCategory, isOpen]);
+
+  // Preload gambar proyek saat modal dibuka/diganti untuk performa maksimal
+  useEffect(() => {
+    if (!isOpen || !initialCategory) return;
+    const currentProjects = PROJECTS_DATA[initialCategory] || [];
+    const currentProject = currentProjects[projectIndex];
+
+    if (currentProject) {
+      currentProject.images.forEach((src) => {
+        const img = new window.Image();
+        img.src = src;
+      });
+    }
+  }, [isOpen, initialCategory, projectIndex]);
 
   if (!isOpen || !initialCategory) return null;
 
@@ -351,16 +366,15 @@ export default function ModalProjects({
 
         {/* Konten Utama */}
         <div className="p-6 flex flex-col lg:flex-row gap-6">
-          {/* Sisi Kiri: Rombakan Total Viewport & Dot Indicators */}
+          {/* Sisi Kiri: Viewport Gambar & Dot Indicators */}
           <div className="w-full lg:w-3/5 flex flex-col gap-4">
-            {/* Wrapper Utama Image Area */}
             {/* Wrapper Utama Image Area */}
             <div className="relative w-full flex items-center justify-center px-10 md:px-12">
               {/* Navigasi Kiri */}
               {project.images.length > 1 && imageIndex > 0 && (
                 <button
                   onClick={handlePrevImage}
-                  className="absolute -left-1  top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#1f1f1f]/70 backdrop-blur-md border border-white/15 text-white/80 flex items-center justify-center hover:bg-neutral-800 hover:text-white hover:scale-105 active:scale-95 transition-all duration-200 z-10 shadow-xl group/btn"
+                  className="absolute -left-1 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#1f1f1f]/70 backdrop-blur-md border border-white/15 text-white/80 flex items-center justify-center hover:bg-neutral-800 hover:text-white hover:scale-105 active:scale-95 transition-all duration-200 z-30 shadow-xl group/btn"
                   aria-label="Previous image"
                 >
                   <svg
@@ -380,33 +394,39 @@ export default function ModalProjects({
                 </button>
               )}
 
-              {/* Container Gambar Utama */}
+              {/* Container Gambar Utama (Semua gambar dirender & ditumpuk secara halus) */}
               <div className="relative flex-1 bg-black/40 border border-white/5 rounded-2xl overflow-hidden aspect-video flex items-center justify-center group h-[300px] md:h-[380px]">
-                {/* Inner Wrapper Jarak Gambar */}
                 <div className="absolute inset-4 md:inset-6">
-                  <Image
-                    src={project.images[imageIndex]}
-                    alt={`${project.title} screenshot ${imageIndex + 1}`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 60vw"
-                    priority
-                    className="object-contain rounded-2xl"
-                  />
+                  {project.images.map((imgSrc, idx) => (
+                    <Image
+                      key={`${project.title}-${idx}`}
+                      src={imgSrc}
+                      alt={`${project.title} screenshot ${idx + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 60vw"
+                      priority={idx === 0}
+                      className={`object-contain rounded-2xl transition-opacity duration-200 ease-in-out ${
+                        idx === imageIndex
+                          ? "opacity-100 z-10"
+                          : "opacity-0 z-0 pointer-events-none"
+                      }`}
+                    />
+                  ))}
                 </div>
 
                 {/* Indikator Slider Angka Ringkas */}
                 {project.images.length > 1 && (
-                  <div className="absolute bottom-3 right-3 bg-black/70 border border-white/10 px-2.5 py-1 rounded-md text-[11px] font-mono text-white/90 z-10">
+                  <div className="absolute bottom-3 right-3 bg-black/70 border border-white/10 px-2.5 py-1 rounded-md text-[11px] font-mono text-white/90 z-20">
                     {imageIndex + 1} / {project.images.length}
                   </div>
                 )}
               </div>
 
-              {/* Navigasi Rerata Kanan */}
+              {/* Navigasi Kanan */}
               {project.images.length > 1 && imageIndex < project.images.length - 1 && (
                 <button
                   onClick={handleNextImage}
-                  className="absolute -right-1 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#1f1f1f]/70 backdrop-blur-md border border-white/15 text-white/80 flex items-center justify-center hover:bg-neutral-800 hover:text-white hover:scale-105 active:scale-95 transition-all duration-200 z-10 shadow-xl group/btn"
+                  className="absolute -right-1 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#1f1f1f]/70 backdrop-blur-md border border-white/15 text-white/80 flex items-center justify-center hover:bg-neutral-800 hover:text-white hover:scale-105 active:scale-95 transition-all duration-200 z-30 shadow-xl group/btn"
                   aria-label="Next image"
                 >
                   <svg
@@ -427,7 +447,7 @@ export default function ModalProjects({
               )}
             </div>
 
-            {/* Navigasi Dot Indicators Minimalis (Rombakan Utama) */}
+            {/* Navigasi Dot Indicators Minimalis */}
             {project.images.length > 1 && (
               <div className="flex justify-center items-center gap-2 py-1.5 transition-all">
                 {project.images.map((_, idx) => (
