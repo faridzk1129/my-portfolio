@@ -372,7 +372,7 @@ Usage:
 
           <div className="md:absolute md:bottom-0 md:inset-x-0 md:mx-auto w-full flex justify-center overflow-hidden">
             <Image
-              src="/photo-me-1.png"
+              src="/photo-me-1.webp"
               alt="Farid"
               width={400}
               height={400}
