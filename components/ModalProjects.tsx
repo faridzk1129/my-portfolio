@@ -27,79 +27,86 @@ const PROJECTS_DATA: ProjectDataStructure = {
   "UI Design": [
     {
       title: "Careline Web",
-      images: Array.from({ length: 5 }, (_, i) => `/ui-design/project 1-${i + 1}.png`),
+      images: Array.from({ length: 5 }, (_, i) => `/ui-design/project 1-${i + 1}.webp`),
       description:
-        'A UI/UX design project for "Careline", a funded PKM-PM website platform dedicated to domestic violence reporting and education in Pinrang Regency. Serving as the UI/UX designer, I crafted an intuitive interface for the core reporting system alongside educational features, including self-defense guides, abuse indicators, emergency contacts, local help centers, and reported case data.',
+        'A UI design project for "Careline", a funded PKM-PM website platform dedicated to domestic violence reporting and education in Pinrang Regency. I crafted an intuitive interface for the core reporting system alongside educational features, including self-defense guides, abuse indicators, emergency contacts, local help centers, and reported case data.',
       techStack: ["Figma"],
     },
     {
       title: "Authentication Pages",
-      images: Array.from({ length: 2 }, (_, i) => `/ui-design/project 2-${i + 1}.png`),
+      images: Array.from({ length: 2 }, (_, i) => `/ui-design/project 2-${i + 1}.webp`),
       description:
         "A UI design exploration project featuring clean and minimalist Sign In and Sign Up pages, created as part of my Figma learning process. This design adopts a clean and minimalist user interface concept, combined with engaging modern illustrations to enhance visual aesthetics and provide a more interactive user authentication experience.",
       techStack: ["Figma"],
     },
     {
       title: "iOS Music App",
-      images: ["/ui-design/project 3-1.png"],
+      images: ["/ui-design/project 3-1.webp"],
       description:
         "A UI design exploration for an iOS music application, created as part of the Figma learning process. This project focuses on the application of smooth linear color gradients, combined with glassmorphism effects and modern 3D elements to deliver a sleek, aesthetic, and clean interface for user music experiences.",
       techStack: ["Figma"],
     },
     {
       title: "Weather & Travel Dashboard",
-      images: ["/ui-design/project 4-1.png"],
+      images: ["/ui-design/project 4-1.webp"],
       description:
         "A UI design exploration for a weather and travel dashboard, created as part of the Figma learning process. This project integrates real-time weather forecasting with holiday destination recommendations, utilizing a clean and modern card-based layout to provide a seamless, intuitive, and visually appealing trip-planning experience.",
       techStack: ["Figma"],
     },
     {
       title: "Creative Agency Landing Page",
-      images: ["/ui-design/project 5-1.png"],
+      images: ["/ui-design/project 5-1.webp"],
       description:
         "A UI design exploration for a creative agency landing page, created as part of the Figma learning process. This project applies a modern editorial design style featuring bold, expressive typography, high-contrast layouts, and dynamic overlapping elements to deliver a visually striking and professional user interface.",
       techStack: ["Figma"],
     },
     {
       title: "Digital Coffee Shop Menu",
-      images: ["/ui-design/project 6-1.png"],
+      images: ["/ui-design/project 6-1.webp"],
       description:
         "A UI design exploration for a digital coffee shop menu page, created as part of the Figma learning process. This project features a fresh, clean green-themed aesthetic combined with a card-based product display and interactive customization components to deliver a seamless, modern ordering experience for users.",
       techStack: ["Figma"],
     },
     {
       title: "Manga Reader App",
-      images: ["/ui-design/project 7-1.png"],
+      images: ["/ui-design/project 7-1.webp"],
       description:
         "A UI design exploration for a manga reader application, created as part of the Figma learning process. This project features a sleek dark mode theme with vibrant purple and orange gradients, incorporating 3D visual elements and a content-focused layout to deliver a modern and immersive reading experience for users.",
       techStack: ["Figma"],
     },
     {
       title: "Sports Mobile App",
-      images: ["/ui-design/project 8-1.png"],
+      images: ["/ui-design/project 8-1.webp"],
       description:
         "A UI design exploration for a Nike sports mobile application, created as part of the Figma learning process. This project implements an elegant dark mode theme with smooth, subtle gradients, seamlessly integrating an e-commerce product showcase with an activity tracking widget to deliver a sleek, modern, and dynamic user experience.",
+      techStack: ["Figma"],
+    },
+    {
+      title: "Omnitill Web",
+      images: Array.from({ length: 11 }, (_, i) => `/ui-design/project 9-${i + 1}.webp`),
+      description:
+        'A UI design project for "Omnitill", a smart cashier and stock management web system designed for cafes and restaurants. I created a clean and comfortable interface to help staff process orders quickly and manage daily business effortlessly. Key features include a fast cashier dashboard, real-time kitchen order tracking, ingredient stock logs, and complete transaction history.',
       techStack: ["Figma"],
     },
   ],
   "Mobile App": [
     {
       title: "Fitness Tracker",
-      images: Array.from({ length: 5 }, (_, i) => `/mobile-app/project 1-${i + 1}.png`),
+      images: Array.from({ length: 5 }, (_, i) => `/mobile-app/project 1-${i + 1}.webp`),
       description:
         'A cross-platform fitness mobile application (iOS and Android) named "FitFlux" developed using React Native. This application tracks user workout statistics, including weekly calorie expenditure and exercise duration, while offering a variety of guided workout programs categorized by difficulty levels through a clean, modern, and highly interactive user interface.',
       techStack: ["React Native", "Firebase", "Expo"],
     },
     {
       title: "Shuttlecock Classifier",
-      images: Array.from({ length: 2 }, (_, i) => `/mobile-app/project 2-${i + 1}.png`),
+      images: Array.from({ length: 2 }, (_, i) => `/mobile-app/project 2-${i + 1}.webp`),
       description:
         '"Scancock" is an Android-based mobile application that integrates Machine Learning for real-time physical quality classification of shuttlecocks. This research involved experimenting with three CNN architectures—TinyVGG, MobileNetV2, and ResNet50—trained on a dataset of 1.000 images. MobileNetV2 was selected as the optimal model due to its superior accuracy and computational efficiency, then converted into TFLite format and implemented using Kotlin to provide instant "Good" or "Bad" shuttlecock detection results via the device\'s camera.',
       techStack: ["Android", "Kotlin", "MobileNetV2", "TFLite"],
     },
     {
       title: "Card Game",
-      images: ["/mobile-app/project 3-1.png"],
+      images: ["/mobile-app/project 3-1.webp"],
       description:
         'A classic mobile card game application named "WAR" developed for the iOS platform as part of the Swift learning process. This project implements a simple card-dealing game mechanic pitting the player against the computer (COM), featuring real-time score tracking and a clean, intuitive card-table themed user interface.',
       techStack: ["iOS", "Swift"],
@@ -108,70 +115,70 @@ const PROJECTS_DATA: ProjectDataStructure = {
   "Web App": [
     {
       title: "Pelindo Monitoring Dashboard",
-      images: Array.from({ length: 14 }, (_, i) => `/web-app/project 1-${i + 1}.png`),
+      images: Array.from({ length: 14 }, (_, i) => `/web-app/project 1-${i + 1}.webp`),
       description:
         "A feature expansion and enhancement project for the Pelindo Jasa Maritim monitoring dashboard website, built to streamline the tracking and management of core operational workflows. This system facilitates the monitoring of dredging projects, vessel docking schedules, fuel (BBM) requests, and centralized approval management to significantly boost efficiency, data accuracy, and workflow productivity in maritime operations.",
       techStack: ["PHP", "Laravel", "MySQL", "Oracle", "Bootstrap"],
     },
     {
       title: "Futsal Online Booking System",
-      images: Array.from({ length: 11 }, (_, i) => `/web-app/project 2-${i + 1}.png`),
+      images: Array.from({ length: 11 }, (_, i) => `/web-app/project 2-${i + 1}.webp`),
       description:
         "A modern and responsive website landing page for futsal business built using Next.js and Tailwind CSS. The platform features comprehensive information regarding facilities, court availability, and user reviews, integrated with an intuitive online booking form to streamline court reservations.",
       techStack: ["Next JS", "Tailwindcss", "Firebase"],
     },
     {
       title: "Mood Tracking Platform",
-      images: Array.from({ length: 4 }, (_, i) => `/web-app/project 3-${i + 1}.png`),
+      images: Array.from({ length: 4 }, (_, i) => `/web-app/project 3-${i + 1}.webp`),
       description:
         'A web application project called "Moodi" a mood tracking platform built with Next.js and Tailwind CSS. Designed with a clean, modern, and calming user interface, the platform allows users to log daily activities, monitor emotional trends through visual statistics, and intuitively manage their mental well-being.',
       techStack: ["Next JS", "Tailwindcss", "Firebase"],
     },
     {
       title: "AI Data Provisioning System",
-      images: Array.from({ length: 4 }, (_, i) => `/web-app/project 4-${i + 1}.png`),
+      images: Array.from({ length: 4 }, (_, i) => `/web-app/project 4-${i + 1}.webp`),
       description:
         'An AI-powered web application project named "Port-GPT," developed as an automated enterprise data provisioning system for PT Pelindo Jasa Maritim. This platform utilizes an AI chat interface, enabling employees to independently query and retrieve detailed data directly from the database without requiring manual intervention from the IT division.',
       techStack: ["Next JS", "Tailwindcss", "LangChain", "FastAPI", "Docker", "MySQL"],
     },
     {
       title: "Student Activity Classifier",
-      images: Array.from({ length: 4 }, (_, i) => `/web-app/project 5-${i + 1}.png`),
+      images: Array.from({ length: 4 }, (_, i) => `/web-app/project 5-${i + 1}.webp`),
       description:
         "A web application project designed to classify final-year student activities using Natural Language Processing (NLP) and the Support Vector Machine (SVM) algorithm. The system automatically processes and categorizes text-based activity logs into distinct classes, such as thesis-focused or working, providing valuable strategic insights for JTIK FT UNM leadership to support effective data-driven decision-making.",
       techStack: ["Next JS", "Tailwindcss", "FastAPI", "Supabase", "Joblib"],
     },
     {
       title: "Personal Portfolio Website v1",
-      images: Array.from({ length: 3 }, (_, i) => `/web-app/project 6-${i + 1}.png`),
+      images: Array.from({ length: 3 }, (_, i) => `/web-app/project 6-${i + 1}.webp`),
       description:
         "My first personal landing page website project, built specifically to sharpen and strengthen my web CSS styling skills. This portfolio platform features a clean, responsive dark-themed aesthetic designed to display personal profile information, a technical skills summary, and a project showcase layout seamlessly.",
       techStack: ["HTML", "CSS"],
     },
     {
       title: "Personal Portfolio Website v2",
-      images: ["/web-app/project 7-1.png"],
+      images: ["/web-app/project 7-1.webp"],
       description:
         "My first personal landing page website project, built specifically to sharpen and strengthen my web CSS styling skills. This portfolio platform features a clean, responsive dark-themed aesthetic designed to display personal profile information, a technical skills summary, and a project showcase layout seamlessly.",
       techStack: ["HTML", "CSS", "JavaScript"],
     },
     {
       title: "Digital Art Museum Gallery",
-      images: ["/web-app/project 8-1.png"],
+      images: ["/web-app/project 8-1.webp"],
       description:
         "A digital art museum gallery website project dedicated to showcasing the legendary masterpieces of Vincent van Gogh. Developed with Tailwind CSS, this platform implements an aesthetic, clean, and immersive gallery-like theme, presenting collections of iconic paintings, historical timelines, and artist biographies within a modern and responsive layout.",
       techStack: ["HTML", "Tailwindcss", "JavaScript"],
     },
     {
       title: "Interactive JS Utilities",
-      images: Array.from({ length: 3 }, (_, i) => `/web-app/project 9-${i + 1}.png`),
+      images: Array.from({ length: 3 }, (_, i) => `/web-app/project 9-${i + 1}.webp`),
       description:
         "An interactive web application project built to understand JavaScript programming, focusing on DOM manipulation and event handling. This platform features multiple experimental utilities, including a dynamic background color changer triggered by mouse movement, a card interaction feature (card removal), and an interactive mini Suits Game all presented within a clean, functional, and responsive user interface.",
       techStack: ["HTML", "CSS", "JavaScript"],
     },
     {
       title: "AI Administrative Assistant",
-      images: Array.from({ length: 2 }, (_, i) => `/web-app/project 10-${i + 1}.png`),
+      images: Array.from({ length: 2 }, (_, i) => `/web-app/project 10-${i + 1}.webp`),
       description:
         'A web application project named "LayananAI" an AI-powered integrated administrative service assistant designed to help citizens seamlessly understand, prepare, and complete document management processes. Built on a modern full-stack architecture, the platform integrates an intelligent AI chatbot with a RAG (Retrieval-Augmented Generation) framework to provide interactive step-by-step guidance, automated document text extraction, and adaptive, structured workflows to eliminate slow and complicated procedures.',
       techStack: [
@@ -185,7 +192,7 @@ const PROJECTS_DATA: ProjectDataStructure = {
     },
     {
       title: "Skin Cancer Detection",
-      images: ["/web-app/project 11-1.png"],
+      images: ["/web-app/project 11-1.webp"],
       description:
         "A Machine Learning-powered web API project designed for skin lesion image classification to detect early indications of skin cancer (such as Squamous cell carcinoma and Vascular lesion) or non-cancerous conditions (Melanocytic nevus). Built using Node.js with the Hapi framework and TensorFlow.js, the system processes user image uploads to perform real-time model inference—delivering diagnostic confidence scores, detailed explanations, and actionable medical suggestions.",
       techStack: ["Node.js", "Hapi", "TensorFlow.js", "Google Cloud Firestore"],
@@ -195,7 +202,7 @@ const PROJECTS_DATA: ProjectDataStructure = {
   "Desktop App": [
     {
       title: "Laundry Management",
-      images: Array.from({ length: 3 }, (_, i) => `/desktop-app/project 1-${i + 1}.png`),
+      images: Array.from({ length: 3 }, (_, i) => `/desktop-app/project 1-${i + 1}.webp`),
       description:
         'A desktop laundry management application named "CUCITA" developed using Java within the NetBeans IDE. This application is designed to efficiently streamline laundry business operations, handling customer transaction logging, laundry status tracking, and structured database management via SQL through a clean, functional, and user-friendly desktop interface.',
       techStack: ["Java", "SQL", "Netbeans"],
@@ -204,7 +211,7 @@ const PROJECTS_DATA: ProjectDataStructure = {
   "Extension App": [
     {
       title: "IG Utility Extension",
-      images: ["/extension-app/project 1-1.png"],
+      images: ["/extension-app/project 1-1.webp"],
       description:
         "A multifunctional browser extension project designed as an integrated utility, productivity, and privacy tool for Instagram. This extension enables users to conveniently download various media (photos, videos, reels, and profile pictures), provides a timer-based website blocker for focus management, and features privacy protections that can blur direct messages.",
       techStack: ["Vite JS", "TypeScript", "Flask API"],
@@ -383,7 +390,7 @@ export default function ModalProjects({
                     fill
                     sizes="(max-width: 768px) 100vw, 60vw"
                     priority
-                    className="object-contain"
+                    className="object-contain rounded-2xl"
                   />
                 </div>
 

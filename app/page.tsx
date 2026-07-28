@@ -208,7 +208,7 @@ Usage:
           </div>
           <div className="flex items-center gap-2">
             <span className="font-semibold min-w-[85px]">Whatsapp</span>:
-            <span className=" break-all">+6287860221798</span>
+            <span className=" break-all">+6285931571310</span>
           </div>
         </div>
       );
