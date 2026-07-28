@@ -374,7 +374,7 @@ export default function ModalProjects({
               {project.images.length > 1 && imageIndex > 0 && (
                 <button
                   onClick={handlePrevImage}
-                  className="absolute -left-1 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#1f1f1f]/70 backdrop-blur-md border border-white/15 text-white/80 flex items-center justify-center hover:bg-neutral-800 hover:text-white hover:scale-105 active:scale-95 transition-all duration-200 z-30 shadow-xl group/btn"
+                  className="absolute -left-1 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#1f1f1f]/70 backdrop-blur-md border border-white/15 text-white/80 flex items-center justify-center hover:bg-neutral-800 hover:text-white hover:scale-105 active:scale-95 transition-all duration-200 z-10 shadow-xl group/btn"
                   aria-label="Previous image"
                 >
                   <svg
@@ -426,7 +426,7 @@ export default function ModalProjects({
               {project.images.length > 1 && imageIndex < project.images.length - 1 && (
                 <button
                   onClick={handleNextImage}
-                  className="absolute -right-1 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#1f1f1f]/70 backdrop-blur-md border border-white/15 text-white/80 flex items-center justify-center hover:bg-neutral-800 hover:text-white hover:scale-105 active:scale-95 transition-all duration-200 z-30 shadow-xl group/btn"
+                  className="absolute -right-1 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#1f1f1f]/70 backdrop-blur-md border border-white/15 text-white/80 flex items-center justify-center hover:bg-neutral-800 hover:text-white hover:scale-105 active:scale-95 transition-all duration-200 z-10 shadow-xl group/btn"
                   aria-label="Next image"
                 >
                   <svg
