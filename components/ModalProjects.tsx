@@ -152,15 +152,15 @@ const PROJECTS_DATA: ProjectDataStructure = {
       title: "Personal Portfolio Website v1",
       images: Array.from({ length: 3 }, (_, i) => `/web-app/project 6-${i + 1}.webp`),
       description:
-        "My first personal landing page website project, built specifically to sharpen and strengthen my web CSS styling skills. This portfolio platform features a clean, responsive dark-themed aesthetic designed to display personal profile information, a technical skills summary, and a project showcase layout seamlessly.",
+        "My first personal landing page website project, built specifically to sharpen and strengthen my web CSS styling skills. This portfolio platform features a clean,  aesthetic designed to display personal profile information.",
       techStack: ["HTML", "CSS"],
     },
     {
       title: "Personal Portfolio Website v2",
       images: ["/web-app/project 7-1.webp"],
       description:
-        "My first personal landing page website project, built specifically to sharpen and strengthen my web CSS styling skills. This portfolio platform features a clean, responsive dark-themed aesthetic designed to display personal profile information, a technical skills summary, and a project showcase layout seamlessly.",
-      techStack: ["HTML", "CSS", "JavaScript"],
+        "My second personal landing page website project, built specifically to sharpen and strengthen my web Tailwindcss styling skills. This portfolio platform features a clean, responsive dark-themed aesthetic designed to display personal profile information, a technical skills summary, and a project showcase layout seamlessly.",
+      techStack: ["HTML", "Tailwindcss", "JavaScript"],
     },
     {
       title: "Digital Art Museum Gallery",
@@ -168,13 +168,6 @@ const PROJECTS_DATA: ProjectDataStructure = {
       description:
         "A digital art museum gallery website project dedicated to showcasing the legendary masterpieces of Vincent van Gogh. Developed with Tailwind CSS, this platform implements an aesthetic, clean, and immersive gallery-like theme, presenting collections of iconic paintings, historical timelines, and artist biographies within a modern and responsive layout.",
       techStack: ["HTML", "Tailwindcss", "JavaScript"],
-    },
-    {
-      title: "Interactive JS Utilities",
-      images: Array.from({ length: 3 }, (_, i) => `/web-app/project 9-${i + 1}.webp`),
-      description:
-        "An interactive web application project built to understand JavaScript programming, focusing on DOM manipulation and event handling. This platform features multiple experimental utilities, including a dynamic background color changer triggered by mouse movement, a card interaction feature (card removal), and an interactive mini Suits Game all presented within a clean, functional, and responsive user interface.",
-      techStack: ["HTML", "CSS", "JavaScript"],
     },
     {
       title: "AI Administrative Assistant",
@@ -196,6 +189,13 @@ const PROJECTS_DATA: ProjectDataStructure = {
       description:
         "A Machine Learning-powered web API project designed for skin lesion image classification to detect early indications of skin cancer (such as Squamous cell carcinoma and Vascular lesion) or non-cancerous conditions (Melanocytic nevus). Built using Node.js with the Hapi framework and TensorFlow.js, the system processes user image uploads to perform real-time model inference—delivering diagnostic confidence scores, detailed explanations, and actionable medical suggestions.",
       techStack: ["Node.js", "Hapi", "TensorFlow.js", "Google Cloud Firestore"],
+    },
+    {
+      title: "CPNS SKD Tryout Platform",
+      images: Array.from({ length: 7 }, (_, i) => `/web-app/project 12-${i + 1}.webp`),
+      description:
+        "A comprehensive web-based CPNS SKD tryout platform designed to simulate BKN Computer Assisted Tests (CAT). The application features a dedicated authentication portal, an interactive tryout selection dashboard, and a real-time exam interface equipped with live countdown timers, question navigation grids, and question flagging capabilities. Upon completion, users receive instant performance analytics with passing grade breakdowns across TWK, TIU, and TKP sections, alongside an in-depth answer discussion module featuring detailed step-by-step explanations.",
+      techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Supabase"],
     },
   ],
 
