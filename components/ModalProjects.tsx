@@ -170,6 +170,13 @@ const PROJECTS_DATA: ProjectDataStructure = {
       techStack: ["HTML", "Tailwindcss", "JavaScript"],
     },
     {
+      title: "Interactive JS Utilities",
+      images: Array.from({ length: 3 }, (_, i) => `/web-app/project 9-${i + 1}.webp`),
+      description:
+        "An interactive web application project built to understand JavaScript programming, focusing on DOM manipulation and event handling. This platform features multiple experimental utilities, including a dynamic background color changer triggered by mouse movement, a card interaction feature (card removal), and an interactive mini Suits Game all presented within a clean, functional, and responsive user interface.",
+      techStack: ["HTML", "CSS", "JavaScript"],
+    },
+    {
       title: "AI Administrative Assistant",
       images: Array.from({ length: 2 }, (_, i) => `/web-app/project 10-${i + 1}.webp`),
       description:
